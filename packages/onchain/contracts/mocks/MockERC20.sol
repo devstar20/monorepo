@@ -14,7 +14,15 @@ contract MockERC20 is ERC20UpgradeSafe {
     _setupDecimals(decimals);
   }
 
-  function mint(uint256 amount) public returns (bool) {
-    _mint(msg.sender, amount);
+  /**
+   * @dev See {ERC20-_mint}.
+   *
+   * Requirements:
+   *
+   * - the caller must have the {MinterRole}.
+   */
+  function mint(address account, uint256 amount) external returns (bool) {
+    _mint(account, amount);
+    return true;
   }
 }
